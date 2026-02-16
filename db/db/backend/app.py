@@ -3,6 +3,19 @@ import joblib
 import numpy as np
 import pandas as pd
 from flask_cors import CORS
+import os
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+if DATABASE_URL:
+    engine = create_engine(DATABASE_URL)
+    SessionLocal = sessionmaker(bind=engine)
+    print("✅ Connected to PostgreSQL")
+else:
+    print("❌ DATABASE_URL not found")
+
 
 # Initialize Flask app
 app = Flask(__name__)
