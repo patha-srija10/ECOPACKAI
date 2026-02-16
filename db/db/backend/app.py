@@ -94,7 +94,7 @@ def predict():
     avg_co2 = top_materials["co2_emission_score"].mean()
 
     if avg_co2 != 0:
-        cost_savings_percent = ((avg_co2 - predicted_co2) / avg_co2) * 100
+        cost_savings_percent = ((avg_co2 - predicted_co2) / avg_co2) 
     else:
         cost_savings_percent = 0
 
