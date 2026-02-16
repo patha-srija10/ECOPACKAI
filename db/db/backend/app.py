@@ -103,11 +103,13 @@ def predict():
     co2_reduction_percent = round(co2_reduction_percent, 2)
 
 
-    # ----- SAFE Cost Savings Calculation -----
-    avg_co2 = top_materials["co2_emission_score"].mean()
+    # ----- Correct Cost Savings Calculation -----
 
-    if avg_co2 != 0:
-        cost_savings_percent = ((avg_co2 - predicted_co2) / avg_co2) 
+    # Simulated baseline cost (example logic)
+    baseline_cost = 10   # assume traditional packaging cost baseline
+
+    if baseline_cost != 0:
+        cost_savings_percent = ((baseline_cost - predicted_cost) / baseline_cost) * 100
     else:
         cost_savings_percent = 0
 
