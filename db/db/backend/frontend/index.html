@@ -237,7 +237,7 @@ function scrollToSection(id){
 }
 
 function exportExcel(){
-    window.open("http://127.0.0.1:8000/export_excel");
+    window.open("https://ecopackai-2rda.onrender.com/export_excel");
 }
 
 function predict(){
@@ -252,7 +252,7 @@ biodegradability:+biodegradability.value,
 recyclability_percent:+recyclability_percent.value
 };
 
-fetch("http://127.0.0.1:8000/predict",{
+fetch("https://ecopackai-2rda.onrender.com/predict", {
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify(data)
