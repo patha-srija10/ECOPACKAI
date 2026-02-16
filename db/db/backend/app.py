@@ -86,16 +86,14 @@ def predict():
         (predicted_co2 - avg_recommended_co2) / predicted_co2 * 100 if predicted_co2 != 0 else 0
     )
 
-    # ----- Cost Savings Calculation (CORRECT VERSION) -----
+    # ----- Cost Savings Calculation (Clean Version) -----
 
-    avg_recommended_cost = top_materials["cost_score"].mean()  # temporary if no cost column
+    avg_recommended_co2 = top_materials["co2_emission_score"].mean()
 
     cost_savings_percent = (
-        (predicted_cost - avg_recommended_cost) / predicted_cost * 100
-        if predicted_cost != 0 else 0
+        (avg_recommended_co2 - predicted_cost) / avg_recommended_co2 * 100
+        if avg_recommended_co2 != 0 else 0
     )
-
-
 
     # Prepare response
     results = top_materials[[
