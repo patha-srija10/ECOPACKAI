@@ -79,21 +79,27 @@ def predict():
     last_top_materials = top_materials
 
 
-    # ----- CO2 Reduction Calculation -----
+        # ----- CO2 Reduction Calculation -----
     avg_recommended_co2 = top_materials["co2_emission_score"].mean()
 
-    co2_reduction_percent = (
-        (predicted_co2 - avg_recommended_co2) / predicted_co2 * 100 if predicted_co2 != 0 else 0
-    )
+    if predicted_co2 != 0:
+        co2_reduction_percent = ((predicted_co2 - avg_recommended_co2) / predicted_co2) * 100
+    else:
+        co2_reduction_percent = 0
 
-    # ----- Cost Savings Calculation (Clean Version) -----
+    co2_reduction_percent = round(co2_reduction_percent, 2)
 
-    avg_recommended_co2 = top_materials["co2_emission_score"].mean()
 
-    cost_savings_percent = (
-        (avg_recommended_co2 - predicted_cost) / avg_recommended_co2 * 100
-        if avg_recommended_co2 != 0 else 0
-    )
+    # ----- SAFE Cost Savings Calculation -----
+    avg_co2 = top_materials["co2_emission_score"].mean()
+
+    if avg_co2 != 0:
+        cost_savings_percent = ((avg_co2 - predicted_co2) / avg_co2) * 100
+    else:
+        cost_savings_percent = 0
+
+    cost_savings_percent = round(cost_savings_percent, 2)
+
 
     # Prepare response
     results = top_materials[[
